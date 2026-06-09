@@ -1,0 +1,12 @@
+node_modules
+dist
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+figma-landing-preview.png
+loading-preview.png
+main-preview.png
+info-preview.png
+visa-selected-preview.png
+stay-preview.png
+new-loading-preview.png
