@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BankMoveScreen from "./components/BankMoveScreen";
 import InfoInputScreen from "./components/InfoInputScreen";
 import FinancialServicesScreen from "./components/FinancialServicesScreen";
 import IncomeStatusScreen from "./components/IncomeStatusScreen";
@@ -7,12 +8,17 @@ import MainScreen from "./components/MainScreen";
 import MyDataCompleteScreen from "./components/MyDataCompleteScreen";
 import MyDataConnectScreen from "./components/MyDataConnectScreen";
 import MyDataConsentScreen from "./components/MyDataConsentScreen";
+import MyDataLoadingScreen from "./components/MyDataLoadingScreen";
 import RecommendationLoadingScreen from "./components/RecommendationLoadingScreen";
 import RecommendationResultScreen from "./components/RecommendationResultScreen";
+import RequiredDocumentsScreen from "./components/RequiredDocumentsScreen";
 import ResidencePeriodScreen from "./components/ResidencePeriodScreen";
 import StayPeriodScreen from "./components/StayPeriodScreen";
 import {
   TermsComparisonScreen,
+  TermsLoanLimitScreen,
+  TermsLoanPeriodScreen,
+  TermsOtherConditionsScreen,
   TermsOverviewScreen,
   TermsVisaConditionsScreen,
 } from "./components/TermsScreens";
@@ -31,12 +37,18 @@ function App() {
     | "income"
     | "mydata"
     | "consent"
+    | "mydataLoading"
     | "complete"
     | "recommendLoading"
     | "recommendResult"
     | "termsOverview"
     | "termsComparison"
     | "termsVisaConditions"
+    | "termsLoanLimit"
+    | "termsLoanPeriod"
+    | "termsOtherConditions"
+    | "requiredDocuments"
+    | "bankMove"
   >("main");
   const [userProfile, setUserProfile] = useState<UserProfile>(defaultUserProfile);
 
@@ -119,7 +131,12 @@ function App() {
           <MyDataConsentScreen
             isActive={!isLoading && screen === "consent"}
             onClose={() => setScreen("main")}
-            onNext={() => setScreen("complete")}
+            onNext={() => setScreen("mydataLoading")}
+          />
+          <MyDataLoadingScreen
+            isActive={!isLoading && screen === "mydataLoading"}
+            onClose={() => setScreen("main")}
+            onComplete={() => setScreen("complete")}
           />
           <MyDataCompleteScreen
             isActive={!isLoading && screen === "complete"}
@@ -142,21 +159,52 @@ function App() {
             isActive={!isLoading && screen === "termsOverview"}
             onBack={() => setScreen("recommendResult")}
             onClose={() => setScreen("main")}
-            onNext={() => setScreen("termsComparison")}
+            onNext={() => setScreen("termsVisaConditions")}
           />
           <TermsComparisonScreen
             isActive={!isLoading && screen === "termsComparison"}
             userProfile={userProfile}
-            onBack={() => setScreen("termsOverview")}
+            onBack={() => setScreen("termsLoanLimit")}
             onClose={() => setScreen("main")}
-            onNext={() => setScreen("termsVisaConditions")}
+            onNext={() => setScreen("termsLoanPeriod")}
           />
           <TermsVisaConditionsScreen
             isActive={!isLoading && screen === "termsVisaConditions"}
             userProfile={userProfile}
+            onBack={() => setScreen("termsOverview")}
+            onClose={() => setScreen("main")}
+            onNext={() => setScreen("termsLoanLimit")}
+          />
+          <TermsLoanLimitScreen
+            isActive={!isLoading && screen === "termsLoanLimit"}
+            userProfile={userProfile}
+            onBack={() => setScreen("termsVisaConditions")}
+            onClose={() => setScreen("main")}
+            onNext={() => setScreen("termsComparison")}
+          />
+          <TermsLoanPeriodScreen
+            isActive={!isLoading && screen === "termsLoanPeriod"}
+            userProfile={userProfile}
             onBack={() => setScreen("termsComparison")}
             onClose={() => setScreen("main")}
-            onNext={() => setScreen("termsVisaConditions")}
+            onNext={() => setScreen("termsOtherConditions")}
+          />
+          <TermsOtherConditionsScreen
+            isActive={!isLoading && screen === "termsOtherConditions"}
+            userProfile={userProfile}
+            onBack={() => setScreen("termsLoanPeriod")}
+            onClose={() => setScreen("main")}
+            onNext={() => setScreen("requiredDocuments")}
+          />
+          <RequiredDocumentsScreen
+            isActive={!isLoading && screen === "requiredDocuments"}
+            onClose={() => setScreen("main")}
+            onBack={() => setScreen("recommendResult")}
+            onNext={() => setScreen("bankMove")}
+          />
+          <BankMoveScreen
+            isActive={!isLoading && screen === "bankMove"}
+            onClose={() => setScreen("main")}
           />
         </div>
       </section>
