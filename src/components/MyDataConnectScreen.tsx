@@ -3,7 +3,6 @@ import infoAccount from "../assets/mydata/info-account.png";
 import infoIncome from "../assets/mydata/info-income.png";
 import infoLoan from "../assets/mydata/info-loan.png";
 import infoSpending from "../assets/mydata/info-spending.png";
-import sparkle from "../assets/common/sparkle.png";
 import nextChevron from "../assets/common/next-chevron.png";
 import BravoHeader from "./common/BravoHeader";
 
@@ -33,24 +32,34 @@ function MyDataConnectScreen({ isActive, onClose, onNext }: MyDataConnectScreenP
       <BravoHeader onClose={onClose} />
       <ProgressDots />
 
-      <section className="absolute left-[30px] top-[164px] h-[145px] w-[343px]">
-        <h2 className="text-base font-semibold leading-6 text-[#4b506c]">
-          마이데이터 연동으로
-          <br />
-          <span className="text-[#425ae9]">더 정확한 추천</span>
-          <span className="text-[#464a68]">을 받아보세요.</span>
-        </h2>
-        <p className="mt-[18px] text-xs leading-5 text-[#7d819a]">
-          직접 입력하지 않아도
-          <br />
-          소득, 거래내역, 대출정보를 자동으로 불러와
-          <br />
-          더 정확한 상품 추천이 가능합니다.
-        </p>
-        <img alt="" className="absolute right-0 top-[-12px] h-[157px] w-[116px] object-contain" src={connectHero} />
-        <img alt="" className="absolute right-[132px] top-[54px] h-[13px] w-3 object-contain" src={sparkle} />
-        <img alt="" className="absolute right-[129px] top-[40px] h-[9px] w-2 object-contain" src={sparkle} />
-      </section>
+      <div className="absolute left-[30px] top-[164px] h-[145px] w-[343px]">
+        <div className="[word-break:break-word] absolute flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic text-[#4b506c] text-[16px] whitespace-nowrap">
+          <p className="leading-[normal]">마이데이터 연동으로</p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic text-[#464a68] text-[16px] whitespace-nowrap" style={{ top: 24 }}>
+          <p>
+            <span className="leading-[normal] text-[#425ae9]">더 정확한 추천</span>
+            <span className="leading-[normal]">을 받아보세요.</span>
+          </p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic text-[#7d819a] text-[12px] whitespace-nowrap" style={{ top: 64 }}>
+          <p className="leading-[normal]">직접 입력하지 않아도</p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic text-[#7d819a] text-[12px] whitespace-nowrap" style={{ top: 84 }}>
+          <p className="leading-[normal]">소득, 거래내역, 대출정보를 자동으로 불러와</p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic text-[#7d819a] text-[12px] whitespace-nowrap" style={{ top: 104 }}>
+          <p className="leading-[normal]">더 정확한 상품 추천이 가능합니다.</p>
+        </div>
+      </div>
+
+      <div className="absolute h-[188px] left-[219px] top-[110px] w-[171px] overflow-hidden" data-node-id="124:657" data-name="image 65">
+        <img
+          alt=""
+          className="absolute h-[193.81%] left-[-19.07%] top-[-41.34%] w-[142.23%] max-w-none object-cover pointer-events-none"
+          src={connectHero}
+        />
+      </div>
 
       <InfoList className="absolute left-5 top-[307px]" />
 
