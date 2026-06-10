@@ -6,7 +6,6 @@ import summaryIncome from "../assets/mydata/summary-income.png";
 import summaryResidence from "../assets/mydata/summary-residence.png";
 import summaryStay from "../assets/mydata/summary-stay.png";
 import summaryVisa from "../assets/mydata/summary-visa.png";
-import sparkle from "../assets/common/sparkle.png";
 import nextChevron from "../assets/common/next-chevron.png";
 import BravoHeader from "./common/BravoHeader";
 import { ProgressDots } from "./MyDataConnectScreen";
@@ -48,6 +47,28 @@ function MyDataCompleteScreen({
       <BravoHeader onClose={onClose} />
       <ProgressDots />
 
+      <div className="absolute left-[227px] top-[166px] h-[116px] w-[134px]" data-node-id="70:263" data-name="image 7">
+        <img
+          alt=""
+          className="absolute inset-0 h-full w-full max-w-none object-cover pointer-events-none"
+          src={completeHero}
+        />
+      </div>
+      <img
+        alt=""
+        className="absolute bottom-[718px] right-[50px] h-[35px] w-[32px] object-contain"
+        data-node-id="124:667"
+        data-name="Image"
+        src={completeBubble}
+      />
+      <img
+        alt=""
+        className="absolute bottom-[675px] right-[135px] h-[27px] w-[22px] object-contain"
+        data-node-id="124:668"
+        data-name="Image"
+        src={completeHeart}
+      />
+
       <section className="absolute left-[30px] top-[164px] h-[118px] w-[333px]">
         <h2 className="text-base font-semibold leading-6 text-[#4b506c]">
           고객님의 정보를
@@ -59,10 +80,6 @@ function MyDataCompleteScreen({
           <br />
           기반으로 안전하게 확인 완료했어요.
         </p>
-        <img alt="" className="absolute right-[10px] top-[-24px] h-[142px] w-32 object-contain" src={completeHero} />
-        <img alt="" className="absolute right-[116px] top-[-19px] h-[27px] w-[22px] object-contain" src={completeBubble} />
-        <img alt="" className="absolute right-[12px] top-[-76px] h-[35px] w-8 object-contain" src={completeHeart} />
-        <img alt="" className="absolute right-[4px] top-[70px] h-[13px] w-3 object-contain" src={sparkle} />
       </section>
 
       <section className="absolute left-5 top-[282px] grid w-[362px] grid-cols-2 gap-2.5">
