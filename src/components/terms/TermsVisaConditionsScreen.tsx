@@ -19,27 +19,28 @@ function TermsVisaConditionsScreen({
       className={`screen-layer bg-white font-inter text-[#151c53] transition-opacity duration-500 ${
         isActive ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
-      data-name="6-2 약관 펼침"
+      data-name="6-5 약관"
       data-node-id="91:546"
       aria-hidden={!isActive}
     >
       <TermsHeader onClose={onClose} />
-      <TermsCompactProgress />
+      <TermsCompactProgress activeStep={1} />
 
       <section className="absolute left-5 top-[151px] h-[528px] w-[362px] rounded-[10px] border border-[#e1e8f5] bg-[#fcfcfd]">
-        <h2 className="absolute left-[25px] top-[21px] text-xs font-bold text-[#444f66]">다른 비자 조건 보기</h2>
-        <p className="absolute left-[25px] top-[42px] text-[9px] font-medium text-[#4e5361]">
+        <h2 className="absolute left-6 top-[21px] text-xs font-bold text-[#444f66]">다른 비자 조건 보기</h2>
+        <p className="absolute left-6 top-[42px] text-[9px] font-medium text-[#4e5361]">
           E-9 비자 외 다른 비자 조건도 확인할 수 있어요.
         </p>
         <button
-          className="absolute right-[24px] top-[28px] text-[10px] font-medium text-[#425ae9]"
+          className="absolute right-[21px] top-[28px] flex items-center gap-1 text-[10px] font-medium text-[#425ae9]"
           type="button"
           onClick={onBack}
         >
-          펼쳐보기 <span className="ml-1 inline-block rotate-180 text-xs">⌄</span>
+          펼쳐보기
+          <ChevronDownIcon className="size-3 text-[#425ae9]" />
         </button>
 
-        <div className="absolute left-5 top-[72px] flex flex-col gap-3.5">
+        <div className="absolute left-5 top-[72px] flex flex-col gap-[14px]">
           {visaConditions.map((condition) => (
             <div key={condition.title} className="relative h-[72px] w-[322px] rounded-[10px] border border-[#e1e8f5] bg-[#fcfcfd]">
               <img alt="" className="absolute left-5 top-[17px] size-[34px] object-contain" src={condition.icon} />
@@ -47,7 +48,7 @@ function TermsVisaConditionsScreen({
               <p className="absolute left-[66px] top-[39px] whitespace-pre-line text-[8px] font-medium leading-[11px] text-[#4e5361]">
                 {condition.description}
               </p>
-              <span className="absolute right-[22px] top-[25px] text-lg leading-none text-[#444f66]">⌄</span>
+              <ChevronDownIcon className="absolute right-[22px] top-[25px] size-[18px] text-[#4e5361]" />
             </div>
           ))}
         </div>
@@ -66,6 +67,14 @@ function TermsVisaConditionsScreen({
         rightActive
       />
     </div>
+  );
+}
+
+function ChevronDownIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" className={className} viewBox="0 0 16 16" fill="none">
+      <path d="M4 6.5L8 10.5L12 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 

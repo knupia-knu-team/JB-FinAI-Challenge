@@ -17,6 +17,10 @@ export const termCategories = [
   { label: "기타약관", icon: categoryEtc },
 ];
 
+export const overviewStepLabels = ["1 대출대상", "2 대출한도", "3 대출금리", "4 상환방법", "5 기타약관"];
+
+export const detailStepLabels = ["1 대출대상", "2 대출한도", "3 상환방법", "4 대출기간", "5 기타약관"];
+
 export const visaConditions = [
   {
     title: "F-4 비자 (재외동포)",
@@ -44,5 +48,3 @@ export const visaConditions = [
     icon: visaF7,
   },
 ];
-
-export const termStepLabels = ["1 대출대상", "2 대출한도", "3 대출금리", "4 상환방법", "5 기타약관"];

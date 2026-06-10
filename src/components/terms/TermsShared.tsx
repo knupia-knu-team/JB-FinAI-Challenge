@@ -4,7 +4,7 @@ import bulbIcon from "../../assets/terms/terms-bulb.png";
 import noticeLock from "../../assets/terms/terms-notice-lock.png";
 import BravoHeader from "../common/BravoHeader";
 import { type UserProfile } from "../../userProfile";
-import { termStepLabels } from "./termsData";
+import { detailStepLabels, overviewStepLabels } from "./termsData";
 
 export type BaseTermsScreenProps = {
   isActive: boolean;
@@ -21,8 +21,8 @@ export const TermsHeader = BravoHeader;
 
 export function ProductFact({ title, value, icon }: { title: string; value: string; icon: string }) {
   return (
-    <div className="relative flex items-center gap-3 pl-5">
-      <img alt="" className="size-[26px] object-contain" src={icon} />
+    <div className="relative flex h-full items-center gap-3 pl-5">
+      <img alt="" className="size-[26px] shrink-0 object-contain" src={icon} />
       <div>
         <p className="text-xs font-semibold text-[#444f66]">{title}</p>
         <p className="mt-1 text-[10px] text-[#7d819a]">{value}</p>
@@ -31,7 +31,13 @@ export function ProductFact({ title, value, icon }: { title: string; value: stri
   );
 }
 
-export function TermsLargeProgress({ activeStep }: { activeStep: number }) {
+export function TermsLargeProgress({
+  activeStep,
+  labels = overviewStepLabels,
+}: {
+  activeStep: number;
+  labels?: string[];
+}) {
   return (
     <div className="absolute left-5 top-[51px] h-10 w-[322px]">
       <div className="absolute left-0 top-[11px] h-px w-full bg-[#d6d7e5]" />
@@ -51,7 +57,7 @@ export function TermsLargeProgress({ activeStep }: { activeStep: number }) {
         })}
       </div>
       <div className="absolute left-0 top-[32px] flex w-full justify-between text-[9px] text-[#7d819a]">
-        {termStepLabels.map((label) => (
+        {labels.map((label) => (
           <span key={label}>{label}</span>
         ))}
       </div>
@@ -59,7 +65,13 @@ export function TermsLargeProgress({ activeStep }: { activeStep: number }) {
   );
 }
 
-export function TermsCompactProgress() {
+export function TermsCompactProgress({
+  activeStep,
+  labels = detailStepLabels,
+}: {
+  activeStep: number;
+  labels?: string[];
+}) {
   return (
     <div className="absolute left-1/2 top-[90px] h-9 w-[260px] -translate-x-1/2">
       <div className="absolute left-[18px] top-[13px] h-px w-[224px] bg-[#d6d7e5]" />
@@ -68,7 +80,7 @@ export function TermsCompactProgress() {
           <div
             key={step}
             className={`flex size-[21px] items-center justify-center rounded-full border text-[9px] font-bold ${
-              step === 1 ? "border-[#425ae9] bg-[#425ae9] text-white" : "border-[#d6d7e5] bg-white text-[#4e537f]"
+              step <= activeStep ? "border-[#425ae9] bg-[#425ae9] text-white" : "border-[#d6d7e5] bg-white text-[#4e537f]"
             }`}
           >
             {step}
@@ -76,8 +88,11 @@ export function TermsCompactProgress() {
         ))}
       </div>
       <div className="absolute left-0 top-[26px] flex w-full justify-between text-[8px]">
-        {termStepLabels.map((label, index) => (
-          <span key={label} className={index === 0 ? "font-semibold text-[#425ae9]" : "text-[#7d819a]"}>
+        {labels.map((label, index) => (
+          <span
+            key={label}
+            className={index < activeStep ? "whitespace-nowrap font-semibold text-[#425ae9]" : "whitespace-nowrap text-[#7d819a]"}
+          >
             {label}
           </span>
         ))}
@@ -86,17 +101,29 @@ export function TermsCompactProgress() {
   );
 }
 
-export function AiGuideCard({ className }: { className?: string }) {
+export function AiGuideCard({
+  className,
+  title = "BRAVO AI",
+  description = ["AI가 약관을 이해하기 쉽게 설명하고,", "고객님의 정보와 비교해드려요."],
+  showBulb = true,
+}: {
+  className?: string;
+  title?: string;
+  description?: [string, string];
+  showBulb?: boolean;
+}) {
   return (
     <section className={`${className ?? ""} h-[106px] w-[362px] rounded-[10px] border border-[#e1e8f5] bg-[#fcfcfd]`}>
-      <img alt="" className="absolute left-[18px] top-6 size-14 object-contain" src={aiMascot} />
-      <p className="absolute left-[85px] top-[28px] text-xs font-bold text-[#425ae9]">BRAVO AI</p>
-      <p className="absolute left-[85px] top-[52px] text-[10px] font-medium leading-[15px] text-[#4e5361]">
-        AI가 약관을 이해하기 쉽게 설명하고,
+      <img alt="" className="absolute left-5 top-[30px] h-[47px] w-[52px] object-contain" src={aiMascot} />
+      <p className="absolute left-[85px] top-[25px] text-[13px] font-bold text-[#425ae9]">{title}</p>
+      <p className="absolute left-[85px] top-[49px] text-[11px] font-medium leading-[15px] text-[#4e5361]">
+        {description[0]}
         <br />
-        고객님의 정보와 비교해드려요.
+        {description[1]}
       </p>
-      <img alt="" className="absolute right-[31px] top-[31px] size-11 object-contain" src={bulbIcon} />
+      {showBulb && (
+        <img alt="" className="absolute right-[29px] top-[25px] h-[56px] w-[55px] object-contain" src={bulbIcon} />
+      )}
     </section>
   );
 }
@@ -132,8 +159,8 @@ export function PagerDots({ active }: { active: "first" | "second" }) {
 
 export function TermsNotice({ className }: { className?: string }) {
   return (
-    <section className={`${className ?? ""} h-[62px] w-[362px] rounded-lg bg-[#ecf3fd]`}>
-      <img alt="" className="absolute left-[25px] top-[18px] h-7 w-[22px] object-contain" src={noticeLock} />
+    <section className={`${className ?? ""} h-[62px] w-[362px] rounded-[8px] bg-[#ecf3fd]`}>
+      <img alt="" className="absolute left-[25px] top-[18px] h-[27px] w-[22px] object-contain" src={noticeLock} />
       <p className="absolute left-[66px] top-[17px] text-[11px] font-semibold text-[#425ae9]">
         5가지 항목을 모두 확인해야 대출 신청이 가능해요!
       </p>
@@ -150,17 +177,21 @@ export function DualButtons({
   onBack,
   onNext,
   rightActive,
+  leftWidthClass = "w-[130px]",
+  showRightChevron = rightActive,
 }: {
   leftLabel: string;
   rightLabel: string;
   onBack: () => void;
   onNext: () => void;
   rightActive: boolean;
+  leftWidthClass?: string;
+  showRightChevron?: boolean;
 }) {
   return (
     <div className="absolute bottom-[30px] left-5 flex h-[50px] w-[362px] gap-2">
       <button
-        className="h-full w-[130px] rounded-[15px] bg-[#f2f2f6] text-sm font-medium text-[#4b5070]"
+        className={`h-full ${leftWidthClass} rounded-[15px] bg-[#f2f2f6] text-sm font-medium text-[#4b5070]`}
         type="button"
         onClick={onBack}
       >
@@ -174,7 +205,7 @@ export function DualButtons({
         onClick={onNext}
       >
         {rightLabel}
-        {rightActive && <img alt="" className="absolute right-5 top-[18px] h-[15px] w-[9px]" src={chevronNext} />}
+        {showRightChevron && <img alt="" className="absolute right-5 top-[18px] h-[15px] w-[9px]" src={chevronNext} />}
       </button>
     </div>
   );

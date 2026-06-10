@@ -1,7 +1,6 @@
 import categoryLimit from "../../assets/terms/terms-category-limit.png";
 import categoryRepay from "../../assets/terms/terms-category-repay.png";
 import heroMascot from "../../assets/terms/terms-hero-mascot.png";
-import progressMascot from "../../assets/terms/terms-progress-mascot.png";
 import { termCategories } from "./termsData";
 import {
   AiGuideCard,
@@ -30,10 +29,14 @@ function TermsOverviewScreen({
     >
       <TermsHeader onClose={onClose} />
 
-      <section className="absolute left-[30px] top-[111px] h-[122px] w-[352px]">
-        <h2 className="text-xl font-bold text-[#4b506c]">JB Bravo KOREA 대출</h2>
-        <p className="mt-2 text-xs leading-5 text-[#7d819a]">외국인 전용 신용대출</p>
-        <img alt="" className="absolute right-0 top-[-34px] h-[156px] w-[140px] object-contain" src={heroMascot} />
+      <section className="absolute left-[30px] top-[112px] h-[123px] w-[352px]">
+        <h2 className="text-[20px] font-bold leading-[28px] text-[#4b506c]">JB Bravo KOREA 대출</h2>
+        <p className="mt-1 text-xs leading-5 text-[#7d819a]">외국인 전용 신용대출</p>
+        <img
+          alt=""
+          className="pointer-events-none absolute right-[-10px] top-[-47px] h-[195px] w-[176px] object-contain"
+          src={heroMascot}
+        />
       </section>
 
       <section className="absolute left-5 top-[175px] grid h-[59px] w-[362px] grid-cols-2 rounded-[10px] border border-[#e1e8f5] bg-[#fcfcfd]">
@@ -71,7 +74,6 @@ function TermsOverviewScreen({
           </p>
         </div>
         <TermsLargeProgress activeStep={0} />
-        <img alt="" className="absolute right-[32px] top-[-8px] h-14 w-[55px] object-contain" src={progressMascot} />
       </section>
 
       <TermsNotice className="absolute left-5 top-[707px]" />
@@ -82,6 +84,7 @@ function TermsOverviewScreen({
         onBack={onBack}
         onNext={onNext}
         rightActive
+        leftWidthClass="w-[146px]"
       />
     </div>
   );
